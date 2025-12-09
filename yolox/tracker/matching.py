@@ -56,15 +56,13 @@ def ious(atlbrs, btlbrs):
 
     :rtype ious np.ndarray
     """
+    atlbrs = np.ascontiguousarray(atlbrs, dtype=np.float32)
+    btlbrs = np.ascontiguousarray(btlbrs, dtype=np.float32)
     ious = np.zeros((len(atlbrs), len(btlbrs)), dtype=np.float32)
     if ious.size == 0:
         return ious
 
-    ious = bbox_ious(
-        np.ascontiguousarray(atlbrs, dtype=np.float32),
-        np.ascontiguousarray(btlbrs, dtype=np.float32)
-    )
-
+    ious = bbox_ious(atlbrs, btlbrs)
     return ious
 
 
